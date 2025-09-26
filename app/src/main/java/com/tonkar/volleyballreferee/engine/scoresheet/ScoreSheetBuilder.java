@@ -1120,6 +1120,62 @@ public class ScoreSheetBuilder {
     private String colorIntToHtml(int color) {
         return String.format("#%06X", (0xFFFFFF & color)).toLowerCase();
     }
+    private Element createLicencesDiv() {
+        Element grid = new Element("div");
+        // Reutiliza tu grid 1-2-3 + espaciado existentes en el proyecto
+        grid.addClass("div-grid-1-2-3").addClass("spacing-before");
+    
+        // Caja con estilos inline para que se vea igual también en PDF
+        String boxStyle =
+                "border:1px solid #444;border-radius:6px;padding:6px 8px;"
+              + "min-height:52px;display:flex;flex-direction:column;justify-content:center;background:#fff;";
+    
+        // ---- Licence referee 1
+        Element b1 = new Element("div").attr("style", boxStyle);
+        b1.appendElement("div")
+          .attr("style","font-size:11px;font-weight:600;opacity:.75;margin-bottom:2px;")
+          .text(mContext.getString(R.string.licence_referee_1));
+        b1.appendElement("div")
+          .attr("style","font-size:13px;font-weight:700;letter-spacing:.2px;word-break:break-word;")
+          .text(safeText(mReferee1License));
+        grid.appendChild(b1);
+    
+        // ---- Licence referee 2
+        Element b2 = new Element("div").attr("style", boxStyle);
+        b2.appendElement("div")
+          .attr("style","font-size:11px;font-weight:600;opacity:.75;margin-bottom:2px;")
+          .text(mContext.getString(R.string.licence_referee_2));
+        b2.appendElement("div")
+          .attr("style","font-size:13px;font-weight:700;letter-spacing:.2px;word-break:break-word;")
+          .text(safeText(mReferee2License));
+        grid.appendChild(b2);
+    
+        // ---- Licence anotador
+        Element b3 = new Element("div").attr("style", boxStyle);
+        b3.appendElement("div")
+          .attr("style","font-size:11px;font-weight:600;opacity:.75;margin-bottom:2px;")
+          .text(mContext.getString(R.string.licence_scorer));
+        b3.appendElement("div")
+          .attr("style","font-size:13px;font-weight:700;letter-spacing:.2px;word-break:break-word;")
+          .text(safeText(mScorerLicense));
+        grid.appendChild(b3);
+    
+        return grid;
+    }
+    
+    // Setters tipo "builder"
+    public ScoreSheetBuilder setReferee1License(String license) {
+        this.mReferee1License = license; return this;
+    }
+    public ScoreSheetBuilder setReferee2License(String license) {
+        this.mReferee2License = license; return this;
+    }
+    public ScoreSheetBuilder setScorerLicense(String license) {
+        this.mScorerLicense = license; return this;
+    }
+    
+    // Utilidad para nulls
+    private static String safeText(String s) { return s == null ? "" : s; }
 
     private String htmlSkeleton(String title) {
         int homeColor = mStoredGame.getTeamColor(TeamType.HOME);
