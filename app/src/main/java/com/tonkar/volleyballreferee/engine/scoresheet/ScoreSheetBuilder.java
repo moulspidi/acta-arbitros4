@@ -51,6 +51,14 @@ public class ScoreSheetBuilder {
     private String mHomeCoachName;
     private String mGuestCaptainName;
     private String mGuestCoachName;
+    private String mGuestStaffName;
+    private String mHomeStaffName;
+    private String mGuestAssistantCoachName;
+    private String mHomeAssistantCoachName;
+    // --- Licencias (nuevos campos) ---
+    private String mReferee1License;
+    private String mReferee2License;
+    private String mScorerLicense;
 
     public record ScoreSheet(String filename, String content) {}
 
@@ -132,13 +140,13 @@ public class ScoreSheetBuilder {
 
         mBody.appendChild(createStoredGameHeader().addClass("new-page-for-printers"));
         mBody.appendChild(createRemarks());
+        mBody.appendChild(createStaffNames());
         mBody.appendChild(createSignatures());
+mBody.appendChild(createLicencesCard());
         mBody.appendChild(createFooter());
 
         return mDocument.toString();
-    }
-
-    private Element createStoredGameHeader() {
+    }eader() {
         Element cardDiv = new Element("div");
         cardDiv.addClass("div-card");
 
@@ -168,6 +176,7 @@ public class ScoreSheetBuilder {
                 createCellSpan(String.format(Locale.getDefault(), mContext.getString(R.string.set_duration), duration), true, false));
 
         cardDiv.appendChild(gameInfoDiv);
+        
 
         Element homeSetsInfoDiv = new Element("div");
         homeSetsInfoDiv.addClass("div-grid-sets-info");
@@ -821,6 +830,7 @@ public class ScoreSheetBuilder {
 
     private String createStoredIndoor4x4Game() {
         mBody.appendChild(createStoredGameHeader());
+        
         mBody.appendChild(createStoredTeams());
 
         for (int setIndex = 0; setIndex < mStoredGame.getNumberOfSets(); setIndex++) {
@@ -856,14 +866,13 @@ public class ScoreSheetBuilder {
 
         mBody.appendChild(createStoredGameHeader().addClass("new-page-for-printers"));
         mBody.appendChild(createRemarks());
+        mBody.appendChild(createStaffNames());
         mBody.appendChild(createSignatures());
+        mBody.appendChild(createLicencesCard());
         mBody.appendChild(createFooter());
 
         return mDocument.toString();
-    }
-
-    private Element createStoredStartingLineup4x4(int setIndex) {
-        Element wrapperDiv = new Element("div");
+    } new Element("div");
 
         wrapperDiv.appendChild(createTitleDiv(mContext.getString(R.string.confirm_lineup_title)).addClass("spacing-before"));
 
@@ -954,14 +963,13 @@ public class ScoreSheetBuilder {
 
         mBody.appendChild(createStoredGameHeader().addClass("new-page-for-printers"));
         mBody.appendChild(createRemarks());
+        mBody.appendChild(createStaffNames());
         mBody.appendChild(createSignatures());
+        mBody.appendChild(createLicencesCard());
         mBody.appendChild(createFooter());
 
         return mDocument.toString();
-    }
-
-    private String createStoredSnowGame() {
-        mBody.appendChild(createStoredGameHeader());
+    });
         mBody.appendChild(createStoredTeams());
 
         for (int setIndex = 0; setIndex < mStoredGame.getNumberOfSets(); setIndex++) {
@@ -1090,6 +1098,24 @@ public class ScoreSheetBuilder {
         mGuestCoachSignature = base64Image;
     }
 
+    public void setHomeAssistantCoachName(String name) {
+        mHomeAssistantCoachName = name;
+    }
+
+    public void setGuestAssistantCoachName(String name) {
+        mGuestAssistantCoachName = name;
+    }
+
+    public void setHomeStaffName(String name) {
+        mHomeStaffName = name;
+    }
+
+    public void setGuestStaffName(String name) {
+        mGuestStaffName = name;
+    }
+
+
+
     public void setRemarks(String text) {
         mRemarks = text;
     }
@@ -1156,7 +1182,12 @@ public class ScoreSheetBuilder {
     
         return grid;
     }
-    
+    private Element createLicencesCard() {
+    Element card = new Element("div");
+    card.addClass("div-card").addClass("spacing-before");
+    card.appendChild(createLicencesDiv());
+    return card;
+    }
     // Setters tipo "builder"
     public ScoreSheetBuilder setReferee1License(String license) {
         this.mReferee1License = license; return this;
@@ -1171,7 +1202,40 @@ public class ScoreSheetBuilder {
     // Utilidad para nulls
     private static String safeText(String s) { return s == null ? "" : s; }
 
-    private String htmlSkeleton(String title) {
+    
+    private Element createStaffNames() {
+        Element cardDiv = new Element("div");
+        cardDiv.addClass("div-card").addClass("spacing-before");
+
+        cardDiv.appendChild(createTitleDiv(mContext.getString(R.string.staff_block_title)));
+
+        Element grid = new Element("div");
+        grid.addClass("div-grid-1-2-3").addClass("spacing-before");
+        grid.appendChild(createTeamStaffNamesDiv(TeamType.HOME))
+            .appendChild(createSpacingDiv())
+            .appendChild(createTeamStaffNamesDiv(TeamType.GUEST));
+
+        cardDiv.appendChild(grid);
+        return cardDiv;
+    }
+
+    private Element createTeamStaffNamesDiv(TeamType teamType) {
+        Element col = new Element("div");
+        col.addClass("div-flex-column");
+
+        if (TeamType.HOME.equals(teamType)) {
+            col.appendChild(createCellSpan(mContext.getString(R.string.coach) + ": " + safeText(mHomeCoachName), true, false));
+            col.appendChild(createCellSpan(mContext.getString(R.string.assistant_coach) + ": " + safeText(mHomeAssistantCoachName), true, false));
+            col.appendChild(createCellSpan(mContext.getString(R.string.team_staff) + ": " + safeText(mHomeStaffName), true, false));
+        } else {
+            col.appendChild(createCellSpan(mContext.getString(R.string.coach) + ": " + safeText(mGuestCoachName), true, false));
+            col.appendChild(createCellSpan(mContext.getString(R.string.assistant_coach) + ": " + safeText(mGuestAssistantCoachName), true, false));
+            col.appendChild(createCellSpan(mContext.getString(R.string.team_staff) + ": " + safeText(mGuestStaffName), true, false));
+        }
+        return col;
+    }
+
+private String htmlSkeleton(String title) {
         int homeColor = mStoredGame.getTeamColor(TeamType.HOME);
         int guestColor = mStoredGame.getTeamColor(TeamType.GUEST);
 
