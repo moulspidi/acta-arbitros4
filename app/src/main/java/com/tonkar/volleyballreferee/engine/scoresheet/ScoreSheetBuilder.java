@@ -55,13 +55,6 @@ public class ScoreSheetBuilder {
     private String mReferee1License;
     private String mReferee2License;
     private String mScorerLicense;
-    // ---- Staff / segundo entrenador (solo nombres, sin firmas)
-    private String mHomeCoach2Name;
-    private String mGuestCoach2Name;
-    private String mHomeStaff1Name;
-    private String mHomeStaff2Name;
-    private String mGuestStaff1Name;
-    private String mGuestStaff2Name;
 
     public record ScoreSheet(String filename, String content) {}
 
@@ -143,7 +136,6 @@ public class ScoreSheetBuilder {
 
         mBody.appendChild(createStoredGameHeader().addClass("new-page-for-printers"));
         mBody.appendChild(createRemarks());
-        mBody.appendChild(createStaffNames());
         mBody.appendChild(createSignatures());
         mBody.appendChild(createLicencesCard());
         mBody.appendChild(createFooter());
@@ -821,58 +813,6 @@ public class ScoreSheetBuilder {
         return img;
     }
 
-
-private Element createStaffNames() {
-    Element cardDiv = new Element("div");
-    cardDiv.addClass("div-card").addClass("spacing-before");
-
-    // Title
-    cardDiv.appendChild(createTitleDiv("Cuerpo técnico / Staff"));
-
-    // Grid home | spacer | guest
-    Element grid = new Element("div");
-    grid.addClass("div-grid-h-g");
-    grid.appendChild(createStaffSide(TeamType.HOME))
-        .appendChild(createEmptyDiv())
-        .appendChild(createStaffSide(TeamType.GUEST));
-
-    cardDiv.appendChild(grid);
-    return cardDiv;
-}
-
-private Element createStaffSide(TeamType teamType) {
-    Element col = new Element("div");
-    col.addClass("div-flex-column");
-
-    String coachLabel = mContext.getString(R.string.coach);
-    if (TeamType.HOME.equals(teamType)) {
-        col.appendChild(createCellSpan(coachLabel + " 1", false, false));
-        col.appendChild(createCellSpan(safeText(mHomeCoachName), true, false));
-
-        col.appendChild(createCellSpan(coachLabel + " 2", false, false));
-        col.appendChild(createCellSpan(safeText(mHomeCoach2Name), true, false));
-
-        col.appendChild(createCellSpan("Staff 1", false, false));
-        col.appendChild(createCellSpan(safeText(mHomeStaff1Name), true, false));
-
-        col.appendChild(createCellSpan("Staff 2", false, false));
-        col.appendChild(createCellSpan(safeText(mHomeStaff2Name), true, false));
-    } else {
-        col.appendChild(createCellSpan(coachLabel + " 1", false, false));
-        col.appendChild(createCellSpan(safeText(mGuestCoachName), true, false));
-
-        col.appendChild(createCellSpan(coachLabel + " 2", false, false));
-        col.appendChild(createCellSpan(safeText(mGuestCoach2Name), true, false));
-
-        col.appendChild(createCellSpan("Staff 1", false, false));
-        col.appendChild(createCellSpan(safeText(mGuestStaff1Name), true, false));
-
-        col.appendChild(createCellSpan("Staff 2", false, false));
-        col.appendChild(createCellSpan(safeText(mGuestStaff2Name), true, false));
-    }
-    return col;
-}
-
     private Element createFooter() {
         Element div = new Element("div");
         div.addClass("div-footer");
@@ -923,7 +863,6 @@ private Element createStaffSide(TeamType teamType) {
 
         mBody.appendChild(createStoredGameHeader().addClass("new-page-for-printers"));
         mBody.appendChild(createRemarks());
-        mBody.appendChild(createStaffNames());
         mBody.appendChild(createSignatures());
         mBody.appendChild(createFooter());
 
@@ -1022,7 +961,6 @@ private Element createStaffSide(TeamType teamType) {
 
         mBody.appendChild(createStoredGameHeader().addClass("new-page-for-printers"));
         mBody.appendChild(createRemarks());
-        mBody.appendChild(createStaffNames());
         mBody.appendChild(createSignatures());
         mBody.appendChild(createFooter());
 
@@ -1061,7 +999,6 @@ private Element createStaffSide(TeamType teamType) {
 
         mBody.appendChild(createStoredGameHeader().addClass("new-page-for-printers"));
         mBody.appendChild(createRemarks());
-        mBody.appendChild(createStaffNames());
         mBody.appendChild(createSignatures());
         mBody.appendChild(createFooter());
 
@@ -1159,12 +1096,6 @@ private Element createStaffSide(TeamType teamType) {
         mGuestCoachName = name;
         mGuestCoachSignature = base64Image;
     }
-    public void setHomeCoach2Name(String name)   { this.mHomeCoach2Name   = name; }
-    public void setGuestCoach2Name(String name)  { this.mGuestCoach2Name  = name; }
-    public void setHomeStaff1Name(String name)   { this.mHomeStaff1Name   = name; }
-    public void setHomeStaff2Name(String name)   { this.mHomeStaff2Name   = name; }
-    public void setGuestStaff1Name(String name)  { this.mGuestStaff1Name  = name; }
-    public void setGuestStaff2Name(String name)  { this.mGuestStaff2Name  = name; }
 
     public void setRemarks(String text) {
         mRemarks = text;
