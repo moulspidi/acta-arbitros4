@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- HOME -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HOME"
+            android:textStyle="bold"
+            android:paddingBottom="8dp" />
+
+        <EditText
+            android:id="@+id/input_home_coach2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/home_coach2"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/input_home_staff1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/home_staff1"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/input_home_staff2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/home_staff2"
+            android:inputType="textPersonName" />
+
+        <!-- Separación -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
+
+        <!-- GUEST -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GUEST"
+            android:textStyle="bold"
+            android:paddingBottom="8dp" />
+
+        <EditText
+            android:id="@+id/input_guest_coach2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/guest_coach2"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/input_guest_staff1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/guest_staff1"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/input_guest_staff2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/guest_staff2"
+            android:inputType="textPersonName" />
+
+    </LinearLayout>
+</ScrollView>
