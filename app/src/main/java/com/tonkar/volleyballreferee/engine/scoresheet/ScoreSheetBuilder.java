@@ -51,10 +51,6 @@ public class ScoreSheetBuilder {
     private String mHomeCoachName;
     private String mGuestCaptainName;
     private String mGuestCoachName;
-    private String mGuestStaffName;
-    private String mHomeStaffName;
-    private String mGuestAssistantCoachName;
-    private String mHomeAssistantCoachName;
     // --- Licencias (nuevos campos) ---
     private String mReferee1License;
     private String mReferee2License;
@@ -142,11 +138,13 @@ public class ScoreSheetBuilder {
         mBody.appendChild(createRemarks());
         mBody.appendChild(createStaffNames());
         mBody.appendChild(createSignatures());
-mBody.appendChild(createLicencesCard());
+        mBody.appendChild(createLicencesCard());
         mBody.appendChild(createFooter());
 
         return mDocument.toString();
-    }eader() {
+    }
+
+    private Element createStoredGameHeader() {
         Element cardDiv = new Element("div");
         cardDiv.addClass("div-card");
 
@@ -816,6 +814,58 @@ mBody.appendChild(createLicencesCard());
         return img;
     }
 
+
+private Element createStaffNames() {
+    Element cardDiv = new Element("div");
+    cardDiv.addClass("div-card").addClass("spacing-before");
+
+    // Title
+    cardDiv.appendChild(createTitleDiv("Cuerpo técnico / Staff"));
+
+    // Grid home | spacer | guest
+    Element grid = new Element("div");
+    grid.addClass("div-grid-h-g");
+    grid.appendChild(createStaffSide(TeamType.HOME))
+        .appendChild(createEmptyDiv())
+        .appendChild(createStaffSide(TeamType.GUEST));
+
+    cardDiv.appendChild(grid);
+    return cardDiv;
+}
+
+private Element createStaffSide(TeamType teamType) {
+    Element col = new Element("div");
+    col.addClass("div-flex-column");
+
+    String coachLabel = mContext.getString(R.string.coach);
+    if (TeamType.HOME.equals(teamType)) {
+        col.appendChild(createCellSpan(coachLabel + " 1", false, false));
+        col.appendChild(createCellSpan(safeText(mHomeCoachName), true, false));
+
+        col.appendChild(createCellSpan(coachLabel + " 2", false, false));
+        col.appendChild(createCellSpan(safeText(mHomeCoach2Name), true, false));
+
+        col.appendChild(createCellSpan("Staff 1", false, false));
+        col.appendChild(createCellSpan(safeText(mHomeStaff1Name), true, false));
+
+        col.appendChild(createCellSpan("Staff 2", false, false));
+        col.appendChild(createCellSpan(safeText(mHomeStaff2Name), true, false));
+    } else {
+        col.appendChild(createCellSpan(coachLabel + " 1", false, false));
+        col.appendChild(createCellSpan(safeText(mGuestCoachName), true, false));
+
+        col.appendChild(createCellSpan(coachLabel + " 2", false, false));
+        col.appendChild(createCellSpan(safeText(mGuestCoach2Name), true, false));
+
+        col.appendChild(createCellSpan("Staff 1", false, false));
+        col.appendChild(createCellSpan(safeText(mGuestStaff1Name), true, false));
+
+        col.appendChild(createCellSpan("Staff 2", false, false));
+        col.appendChild(createCellSpan(safeText(mGuestStaff2Name), true, false));
+    }
+    return col;
+}
+
     private Element createFooter() {
         Element div = new Element("div");
         div.addClass("div-footer");
@@ -868,11 +918,13 @@ mBody.appendChild(createLicencesCard());
         mBody.appendChild(createRemarks());
         mBody.appendChild(createStaffNames());
         mBody.appendChild(createSignatures());
-        mBody.appendChild(createLicencesCard());
         mBody.appendChild(createFooter());
 
         return mDocument.toString();
-    } new Element("div");
+    }
+
+    private Element createStoredStartingLineup4x4(int setIndex) {
+        Element wrapperDiv = new Element("div");
 
         wrapperDiv.appendChild(createTitleDiv(mContext.getString(R.string.confirm_lineup_title)).addClass("spacing-before"));
 
@@ -965,11 +1017,13 @@ mBody.appendChild(createLicencesCard());
         mBody.appendChild(createRemarks());
         mBody.appendChild(createStaffNames());
         mBody.appendChild(createSignatures());
-        mBody.appendChild(createLicencesCard());
         mBody.appendChild(createFooter());
 
         return mDocument.toString();
-    });
+    }
+
+    private String createStoredSnowGame() {
+        mBody.appendChild(createStoredGameHeader());
         mBody.appendChild(createStoredTeams());
 
         for (int setIndex = 0; setIndex < mStoredGame.getNumberOfSets(); setIndex++) {
@@ -1000,6 +1054,7 @@ mBody.appendChild(createLicencesCard());
 
         mBody.appendChild(createStoredGameHeader().addClass("new-page-for-printers"));
         mBody.appendChild(createRemarks());
+        mBody.appendChild(createStaffNames());
         mBody.appendChild(createSignatures());
         mBody.appendChild(createFooter());
 
@@ -1098,24 +1153,6 @@ mBody.appendChild(createLicencesCard());
         mGuestCoachSignature = base64Image;
     }
 
-    public void setHomeAssistantCoachName(String name) {
-        mHomeAssistantCoachName = name;
-    }
-
-    public void setGuestAssistantCoachName(String name) {
-        mGuestAssistantCoachName = name;
-    }
-
-    public void setHomeStaffName(String name) {
-        mHomeStaffName = name;
-    }
-
-    public void setGuestStaffName(String name) {
-        mGuestStaffName = name;
-    }
-
-
-
     public void setRemarks(String text) {
         mRemarks = text;
     }
@@ -1202,40 +1239,7 @@ mBody.appendChild(createLicencesCard());
     // Utilidad para nulls
     private static String safeText(String s) { return s == null ? "" : s; }
 
-    
-    private Element createStaffNames() {
-        Element cardDiv = new Element("div");
-        cardDiv.addClass("div-card").addClass("spacing-before");
-
-        cardDiv.appendChild(createTitleDiv(mContext.getString(R.string.staff_block_title)));
-
-        Element grid = new Element("div");
-        grid.addClass("div-grid-1-2-3").addClass("spacing-before");
-        grid.appendChild(createTeamStaffNamesDiv(TeamType.HOME))
-            .appendChild(createSpacingDiv())
-            .appendChild(createTeamStaffNamesDiv(TeamType.GUEST));
-
-        cardDiv.appendChild(grid);
-        return cardDiv;
-    }
-
-    private Element createTeamStaffNamesDiv(TeamType teamType) {
-        Element col = new Element("div");
-        col.addClass("div-flex-column");
-
-        if (TeamType.HOME.equals(teamType)) {
-            col.appendChild(createCellSpan(mContext.getString(R.string.coach) + ": " + safeText(mHomeCoachName), true, false));
-            col.appendChild(createCellSpan(mContext.getString(R.string.assistant_coach) + ": " + safeText(mHomeAssistantCoachName), true, false));
-            col.appendChild(createCellSpan(mContext.getString(R.string.team_staff) + ": " + safeText(mHomeStaffName), true, false));
-        } else {
-            col.appendChild(createCellSpan(mContext.getString(R.string.coach) + ": " + safeText(mGuestCoachName), true, false));
-            col.appendChild(createCellSpan(mContext.getString(R.string.assistant_coach) + ": " + safeText(mGuestAssistantCoachName), true, false));
-            col.appendChild(createCellSpan(mContext.getString(R.string.team_staff) + ": " + safeText(mGuestStaffName), true, false));
-        }
-        return col;
-    }
-
-private String htmlSkeleton(String title) {
+    private String htmlSkeleton(String title) {
         int homeColor = mStoredGame.getTeamColor(TeamType.HOME);
         int guestColor = mStoredGame.getTeamColor(TeamType.GUEST);
 
