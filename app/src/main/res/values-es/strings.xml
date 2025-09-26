@@ -340,7 +340,6 @@
     <string name="app_intro_done_button">@string/start</string>
     <string name="home">Inicio</string>
 
-    <string name="licences_title">Licencias</string>
     <string name="licence_referee_1">Licencia árbitro 1</string>
     <string name="licence_referee_2">Licencia árbitro 2</string>
     <string name="licence_scorer">Licencia anotador</string>

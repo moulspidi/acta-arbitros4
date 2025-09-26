@@ -26,11 +26,6 @@ import java.text.*;
 import java.util.*;
 
 public class ScoreSheetBuilder {
-    // Licences fields
-    private String mReferee1License;
-    private String mReferee2License;
-    private String mScorerLicense;
-
 
     private final Context     mContext;
     private final IStoredGame mStoredGame;
@@ -673,7 +668,6 @@ public class ScoreSheetBuilder {
         cardDiv.addClass("div-card").addClass("spacing-before");
 
         cardDiv.appendChild(createTitleDiv(mContext.getString(R.string.signatures)));
-        cardDiv.appendChild(createLicencesDiv());
 
         Element refereeSignaturesDiv = new Element("div");
         refereeSignaturesDiv.addClass("div-grid-1-2-3").addClass("spacing-before");

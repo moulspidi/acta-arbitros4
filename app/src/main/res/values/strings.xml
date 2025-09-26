@@ -467,7 +467,6 @@
     <string name="import_teams">Import teams</string>
     <string name="sign_coaches_first">Sign coaches first</string>
     <string name="pre_sign_coaches_hint">Select “Coach (Home)” and “Coach (Guest)” to sign before the match starts.</string>
-    <string name="licences_title">Licences</string>
     <string name="licence_referee_1">Licence referee 1</string>
     <string name="licence_referee_2">Licence referee 2</string>
     <string name="licence_scorer">Licence scorer</string>

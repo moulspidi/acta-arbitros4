@@ -201,6 +201,26 @@ public class MiscSetupFragment extends Fragment implements GameServiceHandler {
             @Override
             public void afterTextChanged(Editable s) {}
         });
+        // --- Licences: load/save per game via SharedPreferences
+        com.tonkar.volleyballreferee.ui.prefs.LicencePrefs licencePrefs =
+                new com.tonkar.volleyballreferee.ui.prefs.LicencePrefs(requireContext());
+        final String gameId = mGame.getId();
+
+        final EditText ref1Lic = view.findViewById(R.id.referee1_licence_input_text);
+        final EditText ref2Lic = view.findViewById(R.id.referee2_licence_input_text);
+        final EditText scorLic = view.findViewById(R.id.scorer_licence_input_text);
+
+        ref1Lic.setText(licencePrefs.getRef1(gameId));
+        ref2Lic.setText(licencePrefs.getRef2(gameId));
+        scorLic.setText(licencePrefs.getScorer(gameId));
+
+        ref1Lic.addTextChangedListener(com.tonkar.volleyballreferee.ui.util.SimpleTextWatcher.on(
+                s -> licencePrefs.setRef1(gameId, s)));
+        ref2Lic.addTextChangedListener(com.tonkar.volleyballreferee.ui.util.SimpleTextWatcher.on(
+                s -> licencePrefs.setRef2(gameId, s)));
+        scorLic.addTextChangedListener(com.tonkar.volleyballreferee.ui.util.SimpleTextWatcher.on(
+                s -> licencePrefs.setScorer(gameId, s)));
+
 
         return view;
     }

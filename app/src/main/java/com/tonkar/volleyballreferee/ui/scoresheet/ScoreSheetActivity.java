@@ -70,11 +70,18 @@ public class ScoreSheetActivity extends ProgressIndicatorActivity {
 
             mWebView = findViewById(R.id.score_sheet);
 
-            mScoreSheetBuilder.setReferee1License("54645")
-                        .setReferee2License("5645465")
-                        .setScorerLicense("45645");
+            
+            // Load licences from Misc prefs
+            com.tonkar.volleyballreferee.ui.prefs.LicencePrefs lp =
+                    new com.tonkar.volleyballreferee.ui.prefs.LicencePrefs(this);
+            String gid = getIntent().getStringExtra("game");
+            mScoreSheetBuilder
+                    .setReferee1License(lp.getRef1(gid))
+                    .setReferee2License(lp.getRef2(gid))
+                    .setScorerLicense(lp.getScorer(gid));
 
             loadScoreSheet(false);
+
 
             FloatingActionButton logoButton = findViewById(R.id.score_sheet_logo_button);
             logoButton.setOnClickListener(v -> selectScoreSheetLogo());
