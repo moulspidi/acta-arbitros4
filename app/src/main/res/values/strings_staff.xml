@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Staff / entrenadores extras -->
-    <string name="staff_names_title">Entrenadores y Staff</string>
-
-    <string name="home_coach2">Entrenador suplente (HOME)</string>
-    <string name="home_staff1">Staff 1 (HOME)</string>
-    <string name="home_staff2">Staff 2 (HOME)</string>
-
-    <string name="guest_coach2">Entrenador suplente (GUEST)</string>
-    <string name="guest_staff1">Staff 1 (GUEST)</string>
-    <string name="guest_staff2">Staff 2 (GUEST)</string>
-
-    <string name="open_staff_inputs">Editar staff</string>
-    <string name="save">Guardar</string>
-    <string name="cancel">Cancelar</string>
+    <!-- Títulos y etiquetas para el diálogo de edición de staff -->
+    <string name="staff_edit_title">Editar staff</string>
+    <string name="staff_home_coach2">Coach 2 (HOME)</string>
+    <string name="staff_home_staff1">Staff 1 (HOME)</string>
+    <string name="staff_home_staff2">Staff 2 (HOME)</string>
+    <string name="staff_guest_coach2">Coach 2 (GUEST)</string>
+    <string name="staff_guest_staff1">Staff 1 (GUEST)</string>
+    <string name="staff_guest_staff2">Staff 2 (GUEST)</string>
+    <string name="staff_edit_fab">Editar staff</string>
 </resources>
