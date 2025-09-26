@@ -55,6 +55,13 @@ public class ScoreSheetBuilder {
     private String mReferee1License;
     private String mReferee2License;
     private String mScorerLicense;
+    // ---- Staff / segundo entrenador (solo nombres, sin firmas)
+    private String mHomeCoach2Name;
+    private String mGuestCoach2Name;
+    private String mHomeStaff1Name;
+    private String mHomeStaff2Name;
+    private String mGuestStaff1Name;
+    private String mGuestStaff2Name;
 
     public record ScoreSheet(String filename, String content) {}
 
@@ -1152,6 +1159,12 @@ private Element createStaffSide(TeamType teamType) {
         mGuestCoachName = name;
         mGuestCoachSignature = base64Image;
     }
+    public void setHomeCoach2Name(String name)   { this.mHomeCoach2Name   = name; }
+    public void setGuestCoach2Name(String name)  { this.mGuestCoach2Name  = name; }
+    public void setHomeStaff1Name(String name)   { this.mHomeStaff1Name   = name; }
+    public void setHomeStaff2Name(String name)   { this.mHomeStaff2Name   = name; }
+    public void setGuestStaff1Name(String name)  { this.mGuestStaff1Name  = name; }
+    public void setGuestStaff2Name(String name)  { this.mGuestStaff2Name  = name; }
 
     public void setRemarks(String text) {
         mRemarks = text;
