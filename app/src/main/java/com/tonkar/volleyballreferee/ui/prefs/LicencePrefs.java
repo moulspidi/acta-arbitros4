@@ -20,4 +20,14 @@ public class LicencePrefs {
     public String getRef1(String gameId){ return sp.getString(k(gameId,"ref1"), ""); }
     public String getRef2(String gameId){ return sp.getString(k(gameId,"ref2"), ""); }
     public String getScorer(String gameId){ return sp.getString(k(gameId,"scorer"), ""); }
+
+    public void setHomeCoach(String gameId, String v){ sp.edit().putString(k(gameId,"home_coach"), v == null ? "" : v).apply(); }
+    public void setGuestCoach(String gameId, String v){ sp.edit().putString(k(gameId,"guest_coach"), v == null ? "" : v).apply(); }
+    public void setHomeStaff(String gameId, String v){ sp.edit().putString(k(gameId,"home_staff"), v == null ? "" : v).apply(); }
+    public void setGuestStaff(String gameId, String v){ sp.edit().putString(k(gameId,"guest_staff"), v == null ? "" : v).apply(); }
+
+    public String getHomeCoach(String gameId){ return sp.getString(k(gameId,"home_coach"), ""); }
+    public String getGuestCoach(String gameId){ return sp.getString(k(gameId,"guest_coach"), ""); }
+    public String getHomeStaff(String gameId){ return sp.getString(k(gameId,"home_staff"), ""); }
+    public String getGuestStaff(String gameId){ return sp.getString(k(gameId,"guest_staff"), ""); }
 }

@@ -55,6 +55,11 @@ public class ScoreSheetBuilder {
     private String mReferee1License;
     private String mReferee2License;
     private String mScorerLicense;
+    private String mHomeCoachLicense;
+    private String mGuestCoachLicense;
+    private String mHomeStaffLicense;
+    private String mGuestStaffLicense;
+
 
     public record ScoreSheet(String filename, String content) {}
 
@@ -138,6 +143,7 @@ public class ScoreSheetBuilder {
         mBody.appendChild(createRemarks());
         mBody.appendChild(createSignatures());
         mBody.appendChild(createLicencesCard());
+        mBody.appendChild(createCoachesCard());
         mBody.appendChild(createFooter());
 
         return mDocument.toString();
@@ -1169,7 +1175,63 @@ public class ScoreSheetBuilder {
     card.appendChild(createLicencesDiv());
     return card;
     }
-    // Setters tipo "builder"
+    
+    private Element createCoachesDiv() {
+        Element grid = new Element("div");
+        grid.addClass("div-grid-1-2-3").addClass("spacing-before");
+        String boxStyle =
+                "border:1px solid #444;border-radius:6px;padding:6px 8px;"
+              + "min-height:52px;display:flex;flex-direction:column;justify-content:center;background:#fff;";
+
+        // Coach Home
+        Element c1 = new Element("div").attr("style", boxStyle);
+        c1.appendElement("div")
+          .attr("style","font-size:11px;font-weight:600;opacity:.75;margin-bottom:2px;")
+          .text(mContext.getString(R.string.licence_coach_home));
+        c1.appendElement("div")
+          .attr("style","font-size:13px;font-weight:700;letter-spacing:.2px;word-break:break-word;")
+          .text(safeText(mHomeCoachLicense));
+        grid.appendChild(c1);
+
+        // Coach Guest
+        Element c2 = new Element("div").attr("style", boxStyle);
+        c2.appendElement("div")
+          .attr("style","font-size:11px;font-weight:600;opacity:.75;margin-bottom:2px;")
+          .text(mContext.getString(R.string.licence_coach_guest));
+        c2.appendElement("div")
+          .attr("style","font-size:13px;font-weight:700;letter-spacing:.2px;word-break:break-word;")
+          .text(safeText(mGuestCoachLicense));
+        grid.appendChild(c2);
+
+        // Staff Home
+        Element c3 = new Element("div").attr("style", boxStyle);
+        c3.appendElement("div")
+          .attr("style","font-size:11px;font-weight:600;opacity:.75;margin-bottom:2px;")
+          .text(mContext.getString(R.string.licence_staff_home));
+        c3.appendElement("div")
+          .attr("style","font-size:13px;font-weight:700;letter-spacing:.2px;word-break:break-word;")
+          .text(safeText(mHomeStaffLicense));
+        grid.appendChild(c3);
+
+        // Staff Guest
+        Element c4 = new Element("div").attr("style", boxStyle);
+        c4.appendElement("div")
+          .attr("style","font-size:11px;font-weight:600;opacity:.75;margin-bottom:2px;")
+          .text(mContext.getString(R.string.licence_staff_guest));
+        c4.appendElement("div")
+          .attr("style","font-size:13px;font-weight:700;letter-spacing:.2px;word-break:break-word;")
+          .text(safeText(mGuestStaffLicense));
+        grid.appendChild(c4);
+
+        return grid;
+    }
+    private Element createCoachesCard() {
+        Element card = new Element("div");
+        card.addClass("div-card").addClass("spacing-before");
+        card.appendChild(createCoachesDiv());
+        return card;
+    }
+// Setters tipo "builder"
     public ScoreSheetBuilder setReferee1License(String license) {
         this.mReferee1License = license; return this;
     }
@@ -1180,6 +1242,19 @@ public class ScoreSheetBuilder {
         this.mScorerLicense = license; return this;
     }
     
+    public ScoreSheetBuilder setHomeCoachLicense(String license) {
+        this.mHomeCoachLicense = license; return this;
+    }
+    public ScoreSheetBuilder setGuestCoachLicense(String license) {
+        this.mGuestCoachLicense = license; return this;
+    }
+    public ScoreSheetBuilder setHomeStaffLicense(String license) {
+        this.mHomeStaffLicense = license; return this;
+    }
+    public ScoreSheetBuilder setGuestStaffLicense(String license) {
+        this.mGuestStaffLicense = license; return this;
+    }
+
     // Utilidad para nulls
     private static String safeText(String s) { return s == null ? "" : s; }
 

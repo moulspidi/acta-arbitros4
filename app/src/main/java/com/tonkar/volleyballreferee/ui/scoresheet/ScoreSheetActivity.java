@@ -78,7 +78,11 @@ public class ScoreSheetActivity extends ProgressIndicatorActivity {
             mScoreSheetBuilder
                     .setReferee1License(lp.getRef1(gid))
                     .setReferee2License(lp.getRef2(gid))
-                    .setScorerLicense(lp.getScorer(gid));
+                    .setScorerLicense(lp.getScorer(gid))
+                    .setHomeCoachLicense(lp.getHomeCoach(gid))
+                    .setGuestCoachLicense(lp.getGuestCoach(gid))
+                    .setHomeStaffLicense(lp.getHomeStaff(gid))
+                    .setGuestStaffLicense(lp.getGuestStaff(gid));
 
             loadScoreSheet(false);
 

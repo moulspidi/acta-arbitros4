@@ -470,4 +470,10 @@
     <string name="licence_referee_1">Licence referee 1</string>
     <string name="licence_referee_2">Licence referee 2</string>
     <string name="licence_scorer">Licence scorer</string>
+
+    <string name="licence_coach_home">Licence coach (Home)</string>
+    <string name="licence_coach_guest">Licence coach (Guest)</string>
+    <string name="licence_staff_home">Licence staff (Home)</string>
+    <string name="licence_staff_guest">Licence staff (Guest)</string>
+
 </resources>

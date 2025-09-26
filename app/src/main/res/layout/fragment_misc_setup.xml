@@ -209,4 +209,93 @@
             android:textSize="@dimen/default_text_size" />
     </com.google.android.material.textfield.TextInputLayout>
 
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/home_coach_licence_input_layout"
+        style="@style/AppTheme.TextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/small_margin_size"
+        android:hint="@string/licence_coach_home"
+        app:endIconMode="clear_text">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/home_coach_licence_input_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:paddingStart="@dimen/default_margin_size"
+            android:paddingEnd="@dimen/default_margin_size"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/default_text_size" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/guest_coach_licence_input_layout"
+        style="@style/AppTheme.TextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/small_margin_size"
+        android:hint="@string/licence_coach_guest"
+        app:endIconMode="clear_text">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/guest_coach_licence_input_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:paddingStart="@dimen/default_margin_size"
+            android:paddingEnd="@dimen/default_margin_size"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/default_text_size" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/home_staff_licence_input_layout"
+        style="@style/AppTheme.TextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/small_margin_size"
+        android:hint="@string/licence_staff_home"
+        app:endIconMode="clear_text">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/home_staff_licence_input_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:paddingStart="@dimen/default_margin_size"
+            android:paddingEnd="@dimen/default_margin_size"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/default_text_size" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/guest_staff_licence_input_layout"
+        style="@style/AppTheme.TextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/small_margin_size"
+        android:hint="@string/licence_staff_guest"
+        app:endIconMode="clear_text">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/guest_staff_licence_input_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:paddingStart="@dimen/default_margin_size"
+            android:paddingEnd="@dimen/default_margin_size"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/default_text_size" />
+    </com.google.android.material.textfield.TextInputLayout>
+
 </LinearLayout>
