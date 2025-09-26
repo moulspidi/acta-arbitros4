@@ -209,20 +209,10 @@ public class MiscSetupFragment extends Fragment implements GameServiceHandler {
         final EditText ref1Lic = view.findViewById(R.id.referee1_licence_input_text);
         final EditText ref2Lic = view.findViewById(R.id.referee2_licence_input_text);
         final EditText scorLic = view.findViewById(R.id.scorer_licence_input_text);
-        final EditText homeCoachLic = view.findViewById(R.id.home_coach_licence_input_text);
-        final EditText guestCoachLic = view.findViewById(R.id.guest_coach_licence_input_text);
-        final EditText homeStaffLic = view.findViewById(R.id.home_staff_licence_input_text);
-        final EditText guestStaffLic = view.findViewById(R.id.guest_staff_licence_input_text);
-
 
         ref1Lic.setText(licencePrefs.getRef1(gameId));
         ref2Lic.setText(licencePrefs.getRef2(gameId));
         scorLic.setText(licencePrefs.getScorer(gameId));
-        homeCoachLic.setText(licencePrefs.getHomeCoach(gameId));
-        guestCoachLic.setText(licencePrefs.getGuestCoach(gameId));
-        homeStaffLic.setText(licencePrefs.getHomeStaff(gameId));
-        guestStaffLic.setText(licencePrefs.getGuestStaff(gameId));
-
 
         ref1Lic.addTextChangedListener(com.tonkar.volleyballreferee.ui.util.SimpleTextWatcher.on(
                 s -> licencePrefs.setRef1(gameId, s)));
@@ -231,17 +221,13 @@ public class MiscSetupFragment extends Fragment implements GameServiceHandler {
         scorLic.addTextChangedListener(com.tonkar.volleyballreferee.ui.util.SimpleTextWatcher.on(
                 s -> licencePrefs.setScorer(gameId, s)));
 
-        homeCoachLic.addTextChangedListener(com.tonkar.volleyballreferee.ui.util.SimpleTextWatcher.on(
-                s -> licencePrefs.setHomeCoach(gameId, s)));
-        guestCoachLic.addTextChangedListener(com.tonkar.volleyballreferee.ui.util.SimpleTextWatcher.on(
-                s -> licencePrefs.setGuestCoach(gameId, s)));
-        homeStaffLic.addTextChangedListener(com.tonkar.volleyballreferee.ui.util.SimpleTextWatcher.on(
-                s -> licencePrefs.setHomeStaff(gameId, s)));
-        guestStaffLic.addTextChangedListener(com.tonkar.volleyballreferee.ui.util.SimpleTextWatcher.on(
-                s -> licencePrefs.setGuestStaff(gameId, s)));
-
 
         return view;
-    }
+    
 
-    private void compu
+@Override
+public void setGameService(IGame game) {
+    this.mGame = game;
+}
+
+}

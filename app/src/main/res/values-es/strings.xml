@@ -343,10 +343,11 @@
     <string name="licence_referee_1">Licencia árbitro 1</string>
     <string name="licence_referee_2">Licencia árbitro 2</string>
     <string name="licence_scorer">Licencia anotador</string>
-
-    <string name="licence_coach_home">Licencia entrenador (Local)</string>
-    <string name="licence_coach_guest">Licencia entrenador (Visitante)</string>
-    <string name="licence_staff_home">Licencia staff (Local)</string>
-    <string name="licence_staff_guest">Licencia staff (Visitante)</string>
-
+    <string name="home_coach2">Entrenador asistente (Local)</string>
+    <string name="home_staff1">Staff 1 (Local)</string>
+    <string name="home_staff2">Staff 2 (Local)</string>
+    <string name="guest_coach2">Entrenador asistente (Visitante)</string>
+    <string name="guest_staff1">Staff 1 (Visitante)</string>
+    <string name="guest_staff2">Staff 2 (Visitante)</string>
+    <string name="open_staff_inputs">Abrir entradas de coaches y staff</string>
 </resources>
